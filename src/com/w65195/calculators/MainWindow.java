@@ -1,6 +1,8 @@
 package com.w65195.calculators;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
 
@@ -34,6 +36,12 @@ public class MainWindow extends JFrame {
       double pound = Double.parseDouble(weightInput.getText());
       double kilogram = pound * 0.45359237;
       calculateWeightButton.setText(String.valueOf(kilogram));
+    });
+
+    calculateDistanceButton.addActionListener(e -> {
+      double miles = Double.parseDouble(distanceInput.getText());
+      double kilometers = miles * 1.60934;
+      distanceOutput.setText(String.valueOf(kilometers));
     });
   }
 }
