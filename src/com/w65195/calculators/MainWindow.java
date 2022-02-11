@@ -27,21 +27,33 @@ public class MainWindow extends JFrame {
     setVisible(true);
 
     calculateTemperatureButton.addActionListener(e -> {
-      double fahrenheit = Double.parseDouble(temperatureInput.getText());
-      double celsius = (fahrenheit - 32) * 5 / 9;
-      temperatureOutput.setText(String.valueOf(celsius));
+      try {
+        double fahrenheit = Double.parseDouble(temperatureInput.getText());
+        double celsius = (fahrenheit - 32) * 5 / 9;
+        temperatureOutput.setText(String.valueOf(celsius));
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Wrong temperature format");
+      }
     });
 
     weightOutput.addActionListener(e -> {
-      double pound = Double.parseDouble(weightInput.getText());
-      double kilogram = pound * 0.45359237;
-      calculateWeightButton.setText(String.valueOf(kilogram));
+      try {
+        double pound = Double.parseDouble(weightInput.getText());
+        double kilogram = pound * 0.45359237;
+        calculateWeightButton.setText(String.valueOf(kilogram));
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Wrong weight format");
+      }
     });
 
     calculateDistanceButton.addActionListener(e -> {
-      double miles = Double.parseDouble(distanceInput.getText());
-      double kilometers = miles * 1.60934;
-      distanceOutput.setText(String.valueOf(kilometers));
+      try {
+        double miles = Double.parseDouble(distanceInput.getText());
+        double kilometers = miles * 1.60934;
+        distanceOutput.setText(String.valueOf(kilometers));
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Wrong miles format");
+      }
     });
   }
 }
