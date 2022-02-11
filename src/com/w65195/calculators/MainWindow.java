@@ -29,5 +29,11 @@ public class MainWindow extends JFrame {
       double celsius = (fahrenheit - 32) * 5 / 9;
       temperatureOutput.setText(String.valueOf(celsius));
     });
+
+    weightOutput.addActionListener(e -> {
+      double pound = Double.parseDouble(weightInput.getText());
+      double kilogram = pound * 0.45359237;
+      calculateWeightButton.setText(String.valueOf(kilogram));
+    });
   }
 }
