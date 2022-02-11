@@ -23,5 +23,11 @@ public class MainWindow extends JFrame {
     setResizable(false);
     add(rootPanel);
     setVisible(true);
+
+    calculateTemperatureButton.addActionListener(e -> {
+      double fahrenheit = Double.parseDouble(temperatureInput.getText());
+      double celsius = (fahrenheit - 32) * 5 / 9;
+      temperatureOutput.setText(String.valueOf(celsius));
+    });
   }
 }
