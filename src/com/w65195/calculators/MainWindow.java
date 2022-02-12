@@ -16,6 +16,9 @@ public class MainWindow extends JFrame {
   private JButton calculateDistanceButton;
   private JTextField distanceInput;
   private JTextField distanceOutput;
+  private JTextField distance2input;
+  private JButton calculateDistance2Button;
+  private JTextField distance2output;
 
   MainWindow() {
     super("Calculators");
@@ -30,9 +33,9 @@ public class MainWindow extends JFrame {
       try {
         double fahrenheit = Double.parseDouble(temperatureInput.getText());
         double celsius = (fahrenheit - 32) * 5 / 9;
-        temperatureOutput.setText(String.valueOf(celsius));
+        temperatureOutput.setText(celsius + "°C");
       } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Wrong temperature format");
+        JOptionPane.showMessageDialog(this, "Wrong temperature input format");
       }
     });
 
@@ -40,9 +43,9 @@ public class MainWindow extends JFrame {
       try {
         double pound = Double.parseDouble(weightInput.getText());
         double kilogram = pound * 0.45359237;
-        calculateWeightButton.setText(String.valueOf(kilogram));
+        calculateWeightButton.setText(kilogram + " kg");
       } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Wrong weight format");
+        JOptionPane.showMessageDialog(this, "Wrong weight input format");
       }
     });
 
@@ -50,9 +53,19 @@ public class MainWindow extends JFrame {
       try {
         double miles = Double.parseDouble(distanceInput.getText());
         double kilometers = miles * 1.60934;
-        distanceOutput.setText(String.valueOf(kilometers));
+        distanceOutput.setText(kilometers + " km");
       } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Wrong miles format");
+        JOptionPane.showMessageDialog(this, "Wrong miles input format");
+      }
+    });
+
+    calculateDistance2Button.addActionListener(e -> {
+      try {
+        double feet = Double.parseDouble(distance2input.getText());
+        double meters = feet * 0.3048;
+        distance2output.setText(meters + " m");
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Wrong feet input format");
       }
     });
   }
