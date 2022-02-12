@@ -1,10 +1,12 @@
 package com.w65195.calculators;
 
+import com.w65195.Converter;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
+
+  private final Converter converter;
 
   private JPanel rootPanel;
   private JTextField temperatureInput;
@@ -29,10 +31,12 @@ public class MainWindow extends JFrame {
     add(rootPanel);
     setVisible(true);
 
+    this.converter = new Converter();
+
     calculateTemperatureButton.addActionListener(e -> {
       try {
         double fahrenheit = Double.parseDouble(temperatureInput.getText());
-        double celsius = (fahrenheit - 32) * 5 / 9;
+        double celsius = this.converter.fahrenheitToCelsius(fahrenheit);
         temperatureOutput.setText(celsius + "°C");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong temperature input format");
@@ -42,7 +46,7 @@ public class MainWindow extends JFrame {
     weightOutput.addActionListener(e -> {
       try {
         double pound = Double.parseDouble(weightInput.getText());
-        double kilogram = pound * 0.45359237;
+        double kilogram = this.converter.poundsToKilograms(pound);
         calculateWeightButton.setText(kilogram + " kg");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong weight input format");
@@ -52,7 +56,7 @@ public class MainWindow extends JFrame {
     calculateDistanceButton.addActionListener(e -> {
       try {
         double miles = Double.parseDouble(distanceInput.getText());
-        double kilometers = miles * 1.60934;
+        double kilometers = this.converter.milesToKilometers(miles);
         distanceOutput.setText(kilometers + " km");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong miles input format");
@@ -62,7 +66,7 @@ public class MainWindow extends JFrame {
     calculateDistance2Button.addActionListener(e -> {
       try {
         double feet = Double.parseDouble(distance2input.getText());
-        double meters = feet * 0.3048;
+        double meters = this.converter.feetToMeters(feet);
         distance2output.setText(meters + " m");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong feet input format");
