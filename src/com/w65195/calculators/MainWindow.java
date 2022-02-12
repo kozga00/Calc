@@ -3,10 +3,12 @@ package com.w65195.calculators;
 import com.w65195.Converter;
 
 import javax.swing.*;
+import java.text.DecimalFormat;
 
 public class MainWindow extends JFrame {
 
   private final Converter converter;
+  private final DecimalFormat decimalFormat;
 
   private JPanel rootPanel;
   private JTextField temperatureInput;
@@ -32,12 +34,13 @@ public class MainWindow extends JFrame {
     setVisible(true);
 
     this.converter = new Converter();
+    this.decimalFormat = new DecimalFormat("0.00");
 
     calculateTemperatureButton.addActionListener(e -> {
       try {
         double fahrenheit = Double.parseDouble(temperatureInput.getText());
         double celsius = this.converter.fahrenheitToCelsius(fahrenheit);
-        temperatureOutput.setText(celsius + "°C");
+        temperatureOutput.setText(this.decimalFormat.format(celsius) + "°C");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong temperature input format");
       }
@@ -47,7 +50,7 @@ public class MainWindow extends JFrame {
       try {
         double pound = Double.parseDouble(weightInput.getText());
         double kilogram = this.converter.poundsToKilograms(pound);
-        calculateWeightButton.setText(kilogram + " kg");
+        calculateWeightButton.setText(this.decimalFormat.format(kilogram) + "kg");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong weight input format");
       }
@@ -57,7 +60,7 @@ public class MainWindow extends JFrame {
       try {
         double miles = Double.parseDouble(distanceInput.getText());
         double kilometers = this.converter.milesToKilometers(miles);
-        distanceOutput.setText(kilometers + " km");
+        distanceOutput.setText(this.decimalFormat.format(kilometers) + "km");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong miles input format");
       }
@@ -67,7 +70,7 @@ public class MainWindow extends JFrame {
       try {
         double feet = Double.parseDouble(distance2input.getText());
         double meters = this.converter.feetToMeters(feet);
-        distance2output.setText(meters + " m");
+        distance2output.setText(this.decimalFormat.format(meters) + "m");
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Wrong feet input format");
       }
