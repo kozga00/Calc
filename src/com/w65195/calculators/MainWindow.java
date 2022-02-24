@@ -10,6 +10,7 @@ public class MainWindow extends JFrame {
   private final Converter converter;
   private final DecimalFormat decimalFormat;
 
+  // bind variables to UI elements
   private JPanel rootPanel;
   private JTextField temperatureInput;
   private JTextField temperatureOutput;
@@ -25,6 +26,7 @@ public class MainWindow extends JFrame {
   private JTextField distance2output;
 
   MainWindow() {
+    // create app main window
     super("Calculators");
     setSize(600, 600);
     setLocationRelativeTo(null);
@@ -33,9 +35,13 @@ public class MainWindow extends JFrame {
     add(rootPanel);
     setVisible(true);
 
+    // create instance of converter class
     this.converter = new Converter();
+
+    // create formatter for converted values
     this.decimalFormat = new DecimalFormat("0.00");
 
+    // handle conversion of temperature
     calculateTemperatureButton.addActionListener(e -> {
       try {
         double fahrenheit = Double.parseDouble(temperatureInput.getText());
@@ -46,6 +52,7 @@ public class MainWindow extends JFrame {
       }
     });
 
+    // handle weight conversion
     weightOutput.addActionListener(e -> {
       try {
         double pound = Double.parseDouble(weightInput.getText());
@@ -56,6 +63,7 @@ public class MainWindow extends JFrame {
       }
     });
 
+    // handle distance conversion
     calculateDistanceButton.addActionListener(e -> {
       try {
         double miles = Double.parseDouble(distanceInput.getText());
@@ -66,6 +74,7 @@ public class MainWindow extends JFrame {
       }
     });
 
+    // handle distance conversion
     calculateDistance2Button.addActionListener(e -> {
       try {
         double feet = Double.parseDouble(distance2input.getText());
